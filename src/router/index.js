@@ -64,7 +64,7 @@ export const constantRoutes = [
         path: 'day',
         name: 'day',
         component: () => import('@/views/service/day'),
-        meta: { title: '按天', icon: 'form' }
+        meta: { title: '按日', icon: 'form' }
       },
       {
         path: 'hour',

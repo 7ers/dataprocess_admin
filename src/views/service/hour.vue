@@ -8,7 +8,7 @@
       fit
       highlight-current-row
     >
-      <el-table-column label="时间" align="center">
+      <el-table-column label="时间" align="center" show-overflow-tooltip="true">
         <template slot-scope="scope">
           <i class="el-icon-time" />
           <span>{{ scope.row.sendtime }}</span>

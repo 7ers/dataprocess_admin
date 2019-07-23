@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container">
+  <div v-show="false" class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
@@ -53,13 +53,6 @@ import axios from 'axios'
 import qs from 'qs'
 import { setToken } from '@/utils/auth'
 
-setToken('admin-token')
-this.$store.dispatch('user/setToken', 'admin-token').then(() => {
-  this.$router.push({ path: this.redirect || '/' })
-}).catch((error) => {
-  console.log(error)
-})
-
 export default {
   name: 'Login',
   data() {
@@ -91,15 +84,26 @@ export default {
       redirect: undefined
     }
   },
-  watch: {
-    $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
-    }
+  // watch: {
+  //   $route: {
+  //     handler: function(route) {
+  //       this.redirect = route.query && route.query.redirect
+  //     },
+  //     immediate: true
+  //   }
+  // },
+  created() {
+    this.fetchData()
   },
   methods: {
+    fetchData() {
+      setToken('admin-token')
+      this.$store.dispatch('user/setToken', 'admin-token').then(() => {
+        this.$router.push({ path: this.redirect || '/' })
+      }).catch((error) => {
+        console.log(error)
+      })
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''

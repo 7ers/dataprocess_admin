@@ -44,7 +44,7 @@ export default {
       listLoading: true,
       listQuery: {
         page: 1,
-        limit: 12
+        limit: 31
       }
     }
   },
@@ -57,7 +57,7 @@ export default {
       axios.get('http://api.798joy.com:18080/querybyday?page=' + (this.listQuery.page - 1), qs.stringify()).then((response) => {
         if (response.data.code === '0') {
           this.list = response.data.data.logs
-          this.total = response.data.data.pages * 12
+          this.total = response.data.data.pages * 31
         }
         this.listLoading = false
       }).catch(() => {
